@@ -1,0 +1,24 @@
+[package]
+name = "ocalrs"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+anyhow = "1.0.104"
+enigo = "0.6.1"
+env_logger = "0.11.11"
+fastrand = "2.5.0"
+image = "0.25.10"
+log = "0.4.34"
+ocrs = "0.13.1"
+rten = "0.26.0"
+serde = {version = "1.0.229", features = ["derive"]}
+toml = "1.1.6"
+xcap = "0.9.8"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = 'abort'
+strip = true

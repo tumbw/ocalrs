@@ -1,0 +1,6 @@
+/target
+/models
+/img
+/debug
+/.cargo
+/Config.toml
