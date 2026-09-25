@@ -19,8 +19,6 @@ pub struct Config {
     pub char_width: u32,
     pub char_height: u32,
 
-    pub scan_stride: u32,
-
     pub required_pixels_for_start: u32,
     pub required_pixels_for_borders: u32,
 

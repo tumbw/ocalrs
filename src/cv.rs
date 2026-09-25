@@ -1,4 +1,4 @@
-use crate::CONFIG;
+use crate::{CONFIG, consts};
 use image::{ImageBuffer, Rgba};
 
 // need struct ?
@@ -55,7 +55,7 @@ pub fn get_beginning_of_word(img: &ImageBuffer<Rgba<u8>, Vec<u8>>) -> Option<(u3
     let max_x = min_x + CONFIG.roi_width - letter_w;
     let max_y = min_y + CONFIG.roi_height - letter_h;
 
-    let scan_stride = CONFIG.scan_stride;
+    let scan_stride = consts::SCAN_STRIDE;
 
     let mut y = min_y;
     while y <= max_y {
@@ -122,7 +122,7 @@ pub fn get_word_bounds (x: u32, y: u32, img: &ImageBuffer<Rgba<u8>, Vec<u8>>) ->
     let (img_w, img_h) = img.dimensions();
     let height = 43.min(img_h.saturating_sub(approx_y));
 
-    let max_scan_x = img_w.saturating_sub(CONFIG.scan_stride);
+    let max_scan_x = img_w.saturating_sub(consts::SCAN_STRIDE);
 
     let width_cut = calc_width(approx_x, approx_y, max_scan_x, height, img);
 
@@ -144,7 +144,7 @@ fn calc_width(start_x: u32, start_y: u32, max_x: u32, height: u32, img: &ImageBu
                 return width;
             }
         }
-        scan_x += CONFIG.scan_stride;
+        scan_x += consts::SCAN_STRIDE;
     }
 
     max_x
@@ -159,7 +159,7 @@ fn is_char_square(x: u32, start_y: u32, height: u32, img: &ImageBuffer<Rgba<u8>,
 
     for y in start_y..(start_y + height) {
         let row_start = (y * width + x) as usize * 4;
-        let end_x = (x + CONFIG.scan_stride).min(width);
+        let end_x = (x + consts::SCAN_STRIDE).min(width);
         let row_end = (y * width + end_x) as usize * 4;
 
         for chunk in raw_img[row_start..row_end].chunks_exact(4) {
