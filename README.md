@@ -2,7 +2,7 @@
 
 This one purpose program will not launch without the `Config.toml`.
 
-## Config.toml example for 1920 x 1080
+## Config.toml example of required fields
 
 ```
 window_name = "exaple"
